@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    var firstNumber = ""
-    var secondNumber = ""
+    var firstInput = ""
+    var secondInput = ""
     var selectedOperator = ""
     var result = 0.0
 
@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var firstNumber = ""
-        var secondNumber = ""
+        var firstInput = ""
+        var secondInput = ""
         var selectedOperator = ""
         var result = 0.0
 
@@ -26,16 +26,16 @@ class MainActivity : AppCompatActivity() {
     fun inputNumber(view: View) {
         val number = (view as Button).text.toString()
         if (selectedOperator.isEmpty()) {
-            firstNumber += number
-            findViewById<TextView>(R.id.numberDisplay).text = firstNumber
+            firstInput += number
+            findViewById<TextView>(R.id.numberDisplay).text = firstInput
         }  else {
-            secondNumber += number
-            findViewById<TextView>(R.id.numberDisplay).text = secondNumber
+            secondInput += number
+            findViewById<TextView>(R.id.numberDisplay).text = secondInput
         }
     }
 
     fun inputOperator(view: View) {
-        if (selectedOperator.isNotEmpty() && firstNumber.isNotEmpty() && secondNumber.isNotEmpty()) {
+        if (selectedOperator.isNotEmpty() && firstInput.isNotEmpty() && secondInput.isNotEmpty()) {
             calculate(view)
         }
         val operator = (view as Button).text.toString()
@@ -44,21 +44,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun calculate(view: View) {
-        if (firstNumber.isNotEmpty() && secondNumber.isNotEmpty() && selectedOperator.isNotEmpty()) {
-            val firstNum = firstNumber.toDouble()
-            val secondNum = secondNumber.toDouble()
+        if (firstInput.isNotEmpty() && secondInput.isNotEmpty() && selectedOperator.isNotEmpty()) {
+            val firstNum = firstInput.toDouble()
+            val secondNum = secondInput.toDouble()
 
             result = when (selectedOperator) {
                 "+" -> firstNum + secondNum
                 "-" -> firstNum - secondNum
-                "x" -> firstNum * secondNum
+                "*" -> firstNum * secondNum
                 "÷" -> firstNum / secondNum
                 else -> 0.0
             }
 
             findViewById<TextView>(R.id.numberDisplay).text = result.toString()
-            firstNumber = result.toString()
-            secondNumber = ""
+            firstInput = result.toString()
+            secondInput = ""
             selectedOperator = ""
 
             if (view.id == R.id.equalButton) {
@@ -70,8 +70,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun reset(view: View) {
-        firstNumber = ""
-        secondNumber = ""
+        firstInput = ""
+        secondInput = ""
         selectedOperator = ""
         result = 0.0
         findViewById<TextView>(R.id.numberDisplay).text = ""
@@ -79,18 +79,19 @@ class MainActivity : AppCompatActivity() {
     }
     fun inputDelete(view: View) {
         if (selectedOperator.isEmpty()) {
-            // Hapus digit terakhir dari firstNumber
-            if (firstNumber.isNotEmpty()) {
-                firstNumber = firstNumber.substring(0, firstNumber.length - 1)
-                findViewById<TextView>(R.id.numberDisplay).text = firstNumber
+            // Hapus digit terakhir dari firstInput
+            if (firstInput.isNotEmpty()) {
+                firstInput = firstInput.substring(0, firstInput.length - 1)
+                findViewById<TextView>(R.id.numberDisplay).text = firstInput
             }
         } else {
-            // Hapus digit terakhir dari secondNumber
-            if (secondNumber.isNotEmpty()) {
-                secondNumber = secondNumber.substring(0, secondNumber.length - 1)
-                findViewById<TextView>(R.id.numberDisplay).text = secondNumber
+            // Hapus digit terakhir dari secondInput
+            if (secondInput.isNotEmpty()) {
+                secondInput = secondInput.substring(0, secondInput.length - 1)
+                findViewById<TextView>(R.id.numberDisplay).text = secondInput
             }
         }
     }
 
 }
+
