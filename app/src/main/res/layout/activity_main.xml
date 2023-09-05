@@ -9,22 +9,24 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/primaryCalc"
-        android:layout_width="match_parent"
+        android:id="@+id/operator"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/calculatorButton"
-        android:layout_marginBottom="28dp"
-        android:textAlignment="textEnd"
-        android:textSize="40dp" />
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="30sp"
 
+        />
     <TextView
-        android:id="@+id/secondaryCalc"
-        android:layout_width="match_parent"
+        android:id="@+id/numberDisplay"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/primaryCalc"
-        android:layout_marginTop="20dp"
-        android:textAlignment="textEnd"
-        android:textSize="15dp" />
+        android:text=""
+        android:textSize="74sp"
+        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+
+        />
 
     <LinearLayout
         android:id="@+id/calculatorButton"
@@ -44,7 +46,7 @@
             <Button
                 style="@style/nonButtonNumber"
                 android:layout_weight="1"
-                android:onClick="inputOperator"
+                android:onClick="reset"
                 android:text="C"/>
 
             <Button
@@ -141,7 +143,7 @@
                 style="@style/nonButtonNumber"
                 android:layout_weight="1"
                 android:onClick="inputOperator"
-                android:text="-"/>
+                android:text="+"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -159,6 +161,7 @@
                 android:onClick="inputNumber"
                 android:text="."/>
             <Button
+                android:id="@+id/equalButton"
                 style="@style/nonButtonNumber"
                 android:layout_weight="1"
                 android:onClick="inputOperator"
